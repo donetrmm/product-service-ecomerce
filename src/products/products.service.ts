@@ -44,12 +44,10 @@ export class ProductsService {
   }
 
   async findWithFilters(filters: { id?: string; nombre?: string; categoria?: string }): Promise<Product[] | Product> {
-    // Si solo se proporciona ID, usar findOne para obtener un único producto
     if (filters.id && !filters.nombre && !filters.categoria) {
       return this.findOne(filters.id);
     }
 
-    // Construir objeto de condiciones para la consulta
     const whereConditions: any = {};
     
     if (filters.nombre) {
